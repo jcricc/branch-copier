@@ -1,10 +1,11 @@
 import os
 import pyperclip
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QPushButton, QFileDialog, QListWidget, 
+    QWidget, QVBoxLayout, QPushButton, QFileDialog, QListWidget,
     QLineEdit, QLabel, QMessageBox, QListWidgetItem, QTextEdit
 )
 from PyQt6.QtCore import Qt
+
 
 class ProjectCopier(QWidget):
     def __init__(self):
@@ -51,6 +52,9 @@ class ProjectCopier(QWidget):
         self.folder_btn.clicked.connect(self.choose_folder)
         self.copy_contents_btn.clicked.connect(self.copy_preview_contents)
         self.copy_structure_btn.clicked.connect(self.copy_folder_structure)
+
+        # 🔄 Auto-update file list when exclude text changes
+        self.exclude_input.textChanged.connect(self.load_files)
 
         # macOS clipboard compatibility
         try:
@@ -118,13 +122,18 @@ class ProjectCopier(QWidget):
             QMessageBox.warning(self, "No folder", "Select a project folder first.")
             return
 
+        excludes = [e.strip() for e in self.exclude_input.text().split(',') if e.strip()]
         structure = []
         root_len = len(self.src_folder.rstrip(os.sep)) + 1
 
         for root, dirs, files in os.walk(self.src_folder):
+            if any(ex in root for ex in excludes):
+                continue
+
             rel_root = root[root_len:]
             indent = "  " * rel_root.count(os.sep)
             structure.append(f"{indent}{os.path.basename(root)}/")
+
             for file in files:
                 structure.append(f"{indent}  {file}")
 
