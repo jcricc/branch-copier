@@ -23,7 +23,7 @@ Whether you're debugging, explaining code, or prompting AI to generate new featu
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/yourusername/project-to-ai-helper.git](https://github.com/jcricc/branch-copier.git)
+git clone https://github.com/<your username>/branch-copier.git
 cd branchcopier
 ```
 
