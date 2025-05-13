@@ -105,6 +105,8 @@ project/
 
 ---
 
+https://github.com/user-attachments/assets/f752fd76-4f98-42f3-8776-322b21a9d665
+
 ## 🧠 Why This Tool?
 
 Most AI tools respond best with:
@@ -130,10 +132,6 @@ This app is designed to make gathering and formatting that context effortless.
 ## 🤝 Contributing
 
 Feel free to open issues, request features, or fork the repo! This is my first released software, so I am very excited for any engagement or requests.
-
-
-https://github.com/user-attachments/assets/f752fd76-4f98-42f3-8776-322b21a9d665
-
 
 ---
 
