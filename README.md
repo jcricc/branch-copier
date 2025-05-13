@@ -23,8 +23,8 @@ Whether you're debugging, explaining code, or prompting AI to generate new featu
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/project-to-ai-helper.git
-cd project-to-ai-helper
+git clone [https://github.com/yourusername/project-to-ai-helper.git](https://github.com/jcricc/branch-copier.git)
+cd branchcopier
 ```
 
 ### 2. Create and activate a virtual environment (optional but recommended)
@@ -135,13 +135,4 @@ Feel free to open issues, request features, or fork the repo!
 
 ## 📜 License
 
-MIT License © 2024 [Your Name]
-
----
-
-Let me know if you'd like:
-
-- A `requirements.txt` file generated
-- Screenshots or badges added
-- A one-liner installation script
-- The GitHub repo name and structure suggestions
+MIT License © 2024 Jack Ritchie
