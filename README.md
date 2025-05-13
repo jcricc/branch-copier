@@ -23,7 +23,7 @@ Whether you're debugging, explaining code, or prompting AI to generate new featu
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your username>/branch-copier.git
+git clone https://github.com/jcricc/branch-copier.git
 cd branchcopier
 ```
 
@@ -129,14 +129,10 @@ This app is designed to make gathering and formatting that context effortless.
 
 ## 🤝 Contributing
 
-Feel free to open issues, request features, or fork the repo!
+Feel free to open issues, request features, or fork the repo! This is my first released software, so I am very excited for any engagement or requests.
 
 ---
 
 ## 📜 License
 
 MIT License © 2024 Jack Ritchie
-
-
-https://github.com/user-attachments/assets/bcd4c160-65db-4a2f-aa55-f325732201b7
-
