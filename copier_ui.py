@@ -3,7 +3,7 @@ import pyperclip
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QPushButton, QFileDialog, QListWidget,
     QLineEdit, QLabel, QMessageBox, QListWidgetItem, QTextEdit,
-    QHBoxLayout, QMenu, QFrame
+    QHBoxLayout, QMenu, QFrame, QCheckBox
 )
 from PyQt6.QtGui import QShortcut, QKeySequence, QColor, QAction, QPixmap
 from PyQt6.QtCore import Qt, QPoint
@@ -13,7 +13,7 @@ class ProjectCopier(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Branch Copier")
-        self.setMinimumSize(800, 600)
+        self.setMinimumSize(1000, 600)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
         self.src_folder = ''
@@ -25,6 +25,8 @@ class ProjectCopier(QWidget):
         self.exclude_input = QLineEdit(".git,__pycache__")
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Filter files by name...")
+        self.show_excluded_checkbox = QCheckBox("Show excluded files (gray)")
+        self.show_excluded_checkbox.setChecked(False)
 
         # Buttons
         self.folder_btn = QPushButton("Choose Project Folder")
@@ -47,6 +49,7 @@ class ProjectCopier(QWidget):
         top_controls.addWidget(self.extensions_input)
         top_controls.addWidget(QLabel("Exclude folders containing:"))
         top_controls.addWidget(self.exclude_input)
+        top_controls.addWidget(self.show_excluded_checkbox)
 
         # Shortcut help and logo box (bottom row)
         help_label = QLabel()
@@ -91,6 +94,7 @@ class ProjectCopier(QWidget):
         self.exclude_input.textChanged.connect(self.load_files)
         self.extensions_input.textChanged.connect(self.load_files)
         self.search_input.textChanged.connect(self.filter_files)
+        self.show_excluded_checkbox.stateChanged.connect(self.load_files)
 
         # Keyboard shortcuts
         QShortcut(QKeySequence("Meta+O"), self, self.choose_folder)
@@ -125,7 +129,7 @@ class ProjectCopier(QWidget):
             self.src_folder = folder
             self.file_list.clear()
             self.preview_area.clear()
-            self.setWindowTitle(f"Project to AI Helper — {os.path.basename(folder)}")
+            self.setWindowTitle(f"Branch Copier — {os.path.basename(folder)}")
             self.load_files()
 
     def load_files(self):
@@ -135,20 +139,26 @@ class ProjectCopier(QWidget):
 
         exts = [e.strip() for e in self.extensions_input.text().split(',') if e.strip()]
         excludes = [e.strip() for e in self.exclude_input.text().split(',') if e.strip()]
+        show_excluded = self.show_excluded_checkbox.isChecked()
 
         for root, _, files in os.walk(self.src_folder):
             is_excluded = any(ex in root for ex in excludes)
             for file in files:
-                if not exts or any(file.endswith(ext) for ext in exts):
-                    full_path = os.path.join(root, file)
-                    self.files.append(full_path)
+                if exts and not any(file.endswith(ext) for ext in exts):
+                    continue
 
-                    item = QListWidgetItem(full_path)
-                    if is_excluded:
-                        item.setForeground(QColor('gray'))
-                        self.excluded_items.add(full_path)
+                full_path = os.path.join(root, file)
+                self.files.append(full_path)
 
-                    self.file_list.addItem(item)
+                if is_excluded and not show_excluded:
+                    continue
+
+                item = QListWidgetItem(full_path)
+                if is_excluded and show_excluded:
+                    item.setForeground(QColor('gray'))
+                    self.excluded_items.add(full_path)
+
+                self.file_list.addItem(item)
 
         self.filter_files()
 
