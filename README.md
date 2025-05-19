@@ -1,4 +1,4 @@
-# 🧠 Project to AI Helper
+# Project to AI Helper
 
 **Branch Copier** is a fast and simple desktop tool that helps developers explore their codebase and easily copy file contents or project structure into AI tools like ChatGPT, GitHub Copilot, or Claude.
 
@@ -6,7 +6,7 @@ Whether you're debugging, explaining code, or prompting AI to generate new featu
 
 ---
 
-## ✨ Features
+## Features
 
 - ✅ Browse any local project folder
 - ✅ Auto-list files with extension and folder filters
@@ -18,7 +18,7 @@ Whether you're debugging, explaining code, or prompting AI to generate new featu
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -49,7 +49,7 @@ pip install PyQt6 pyperclip
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
 python main.py
@@ -94,7 +94,7 @@ project/
 
 ---
 
-## 💡 Use Cases
+## Use Cases
 
 | Scenario                        | How the App Helps                              |
 |---------------------------------|-----------------------------------------------|
@@ -107,7 +107,7 @@ project/
 
 https://github.com/user-attachments/assets/f752fd76-4f98-42f3-8776-322b21a9d665
 
-## 🧠 Why This Tool?
+## Why This Tool?
 
 Most AI tools respond best with:
 
@@ -119,7 +119,7 @@ This app is designed to make gathering and formatting that context effortless.
 
 ---
 
-## 📎 Roadmap Ideas
+## Roadmap Ideas
 
 - Add extension auto-detection with quick toggle chips
 - Right-click context menu for file actions
@@ -137,4 +137,4 @@ Feel free to open issues, request features, or fork the repo! This is my first r
 
 ## 📜 License
 
-MIT License © 2024 Jack Ritchie
+MIT License © 2024 jcricc
